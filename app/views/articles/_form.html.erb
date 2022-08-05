@@ -1,0 +1,28 @@
+#to show validation
+<% if @article.errors.any? %>
+    <h2> Errors List</h2>
+    <ul>
+    #in below line @article variable comses from article controller as we are 
+    #rendering this page from there if any errors occur
+        <% @article.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+    </ul>
+<% end %>
+
+#here in scope article is model name and in url articles is prefix 
+#of routes which we can see from command prompt and need to add _path
+
+<%= form_with(model: @article, local: true)  do |f| %>
+<p>
+    <%= f.label :title %></br>
+    <%= f.text_field :title %>
+</p>
+<p>
+    <%= f.label :description %></br>
+    <%= f.text_area :description %>
+</p>
+<p>
+<%= f.submit %>
+</p>
+<% end %>
